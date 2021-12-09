@@ -1,17 +1,18 @@
-var height = 9; //Высота поля начиная от 0 включительно
-var width = 9;
+var height = 6; //Высота поля начиная от 0 включительно
+var width = 6;
 var game_status = 0; //Статус игры, 0 - ходить можно, 1 нельзя
-let matrix_int = new Array();
-let matrix_step = new Array();
-let top_panel = new Array();
-let left_panel = new Array();
+let matrix_int = new Array(); //исходногенерируемый массив с палатками
+let matrix_step = new Array(); // Запись шагов игрока
+let top_panel = new Array(); // подсчёт палаток по вертикали 
+let left_panel = new Array();// подсчёт палаток по горизонтали 
 var matrix_doc = document.getElementById('matrix');
 var top_panel_doc = document.getElementById('top_panel');
 var left_panel_doc = document.getElementById('left_panel');
+var cell_size = 80; // размер клоток в px
 
 start();
 
-function display(){
+function display() {
 	matrix_doc.innerHTML = "";
 	for( var i = 0; i <= height; i++ ) {
 		for( var j = 0; j <= width; j++ ) {
@@ -30,6 +31,38 @@ function display(){
     for( var i = 0; i <= height; i++ ) {
         top_panel_doc.innerHTML += '<div class="panel_cage" id="t' + i + '">' + top_panel[i] +'</div>';
         left_panel_doc.innerHTML += '<div class="panel_left_cage" id="l' + i + '">' + left_panel[i] + '</div>';
+    }
+    initCSS();
+}
+
+function initCSS() {
+    matrix_doc.style.width = ((cell_size + 2) * (width + 1)) + 'px';
+    matrix_doc.style.height = ((cell_size + 2) * (height + 1)) + 'px';
+    top_panel_doc.style.width = ((cell_size + 2) * (width + 1)) + 'px';
+    top_panel_doc.style.height = (cell_size + 2) + 'px';
+    left_panel_doc.style.width = (cell_size + 2) + 'px';
+    left_panel_doc.style.height = ((cell_size + 2) * (width + 1)) + 'px';
+    var cellClass = document.getElementsByClassName('cell');
+    for (let i = 0; i < cellClass.length; i++) {
+        cellClass[i].style.width = cell_size + 'px';
+        cellClass[i].style.height = cell_size + 'px';
+    }
+    var imgClass = document.getElementsByTagName('img');
+    for (let i = 0; i < imgClass.length; i++) {
+        imgClass[i].style.width = cell_size + 'px';
+        imgClass[i].style.height = cell_size + 'px';
+    }
+    var panel_left_cageClass = document.getElementsByClassName('panel_left_cage');
+    for (let i = 0; i < panel_left_cageClass.length; i++) {
+        panel_left_cageClass[i].style.width = cell_size + 'px';
+        panel_left_cageClass[i].style.height = cell_size + 'px';
+        panel_left_cageClass[i].style.fontSize = cell_size * 0.6 + 'pt';
+    }
+    var panel_cageClass = document.getElementsByClassName('panel_cage');
+    for (let i = 0; i < panel_cageClass.length; i++) {
+        panel_cageClass[i].style.width = cell_size + 'px';
+        panel_cageClass[i].style.height = cell_size + 'px';
+        panel_cageClass[i].style.fontSize = cell_size * 0.6 + 'pt';
     }
 }
 
@@ -57,7 +90,7 @@ function generateTents() {
             matrix_int[a][b] = '2';
             i++;
         }
-    } while (i < (height+width) / 2 + 5)
+    } while (i < (height+width) / 2 + 1)
 }
 
 function generateTrees() {
@@ -206,9 +239,15 @@ function checkingForWinnings() {
     return flag;
 }
 
-function displayBaner(str_baner){
-	document.getElementById('baner').innerHTML = str_baner;
-	document.getElementById('baner').style.visibility = "visible";
+function displayBaner(str_baner) {
+    banerDoc = document.getElementById('baner');
+	banerDoc.innerHTML = str_baner;
+    banerDoc.style.fontSize = cell_size * 0.5 + "px";
+    banerDoc.style.height = cell_size * 1.2 + "px";
+    banerDoc.style.width = cell_size * 2.4 + "px";
+	banerDoc.style.top = ((parseInt(matrix_doc.style.height) / 2) + parseInt(banerDoc.style.height)) * (-1) + "px";
+    banerDoc.style.left = (parseInt(matrix_doc.style.width) / 2) + "px";
+    banerDoc.style.visibility = "visible";
 }
 
 function start() {
@@ -239,4 +278,8 @@ matrix_doc.onclick = function(event) {
         }
         display();
     }
+}
+
+matrix_doc.oncontextmenu = function() {
+    return false;
 }

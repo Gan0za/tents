@@ -1,34 +1,23 @@
 #matrix {
-	margin: 20px;
+	margin: 5px;
 	padding: 0px;
 	border: 2px solid black;
-	width: 520px;
-	height: 520px;
 	background-color: rgb(146, 145, 141);	
     float: left;
 	z-index: 4;
 }
 
-#top_panel {
-    width: 520px; 
-    height: 52px; 
+#top_panel { 
     border: 2px solid black; 
-    margin: 0px 0px 0px 20px;
+    margin: 5px;
 }
 
 #left_panel {
-    /* position: relative;  */
-    width: 52px; 
-    height: 520px; 
     border: 2px solid black; 
-    /* left: 570px; 
-    top: 20px; */
 }
 .cell {
 	float: left;
 	border: 1px solid black;
-	width: 50px;
-	height: 50px;
 	background-color: rgb(146, 145, 141);	
 }
 
@@ -36,10 +25,7 @@
 	margin: 0px;
 	padding: 0px;
 	border: 1px solid black;
-	font-size: 30pt;
 	text-align: center;
-	width: 50px;
-	height: 50px;
 	background-color: rgb(146, 145, 141);	
 }
 
@@ -48,16 +34,8 @@
 	margin: 0px;
 	padding: 0px;
 	border: 1px solid black;
-	font-size: 30pt;
 	text-align: center;
-	width: 50px;
-	height: 50px;
 	background-color: rgb(146, 145, 141);	
-}
-
-img {
-    width: 50px;
-	height: 50px;
 }
 
 #baner { 
@@ -70,8 +48,6 @@ img {
 	padding-top: 10px;
 	width: 150px;
 	height: 70px;
-	background-color: rgb(146, 145, 141);	
-	top: -350px;
-	left: 250px;
+	background-color: rgb(146, 145, 141);
 	z-index: 50;
 }
