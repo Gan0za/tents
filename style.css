@@ -43,11 +43,8 @@
 	position: relative; 
 	border: 2px solid #000;
 	box-shadow: 0.4em 0.4em 5px #7a7a7a94;
-	font-size: 20pt;
 	text-align: center;
 	padding-top: 10px;
-	width: 150px;
-	height: 70px;
 	background-color: rgb(146, 145, 141);
 	z-index: 50;
 }

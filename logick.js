@@ -1,5 +1,7 @@
-var height = 6; //Высота поля начиная от 0 включительно
-var width = 6;
+var height = 7; //Высота поля начиная от 0 включительно
+var width = 7;
+
+var tents_sum = 7; //Колличество палаток 
 var game_status = 0; //Статус игры, 0 - ходить можно, 1 нельзя
 let matrix_int = new Array(); //исходногенерируемый массив с палатками
 let matrix_step = new Array(); // Запись шагов игрока
@@ -8,7 +10,7 @@ let left_panel = new Array();// подсчёт палаток по горизо�
 var matrix_doc = document.getElementById('matrix');
 var top_panel_doc = document.getElementById('top_panel');
 var left_panel_doc = document.getElementById('left_panel');
-var cell_size = 80; // размер клоток в px
+var cell_size = 60; // размер клоток в px
 
 start();
 
@@ -17,13 +19,13 @@ function display() {
 	for( var i = 0; i <= height; i++ ) {
 		for( var j = 0; j <= width; j++ ) {
 			if ( matrix_step[i][j] == '0' ) 
-				matrix_doc.innerHTML += '<div class="cell" id="' + i + j + '"><img src="img/land.png" id="' + i + j + '"></div>';
+				matrix_doc.innerHTML += '<div class="cell" id="' + i + '/' + j + '"><img src="img/land.png" id="' + i + '/' + j + '"></div>';
 			else if ( matrix_step[i][j] == '1' )
-					matrix_doc.innerHTML += '<div class="cell" id="' + i + j + '"><img src="img/grass.png" id="' + i + j + '"></div>';		
+					matrix_doc.innerHTML += '<div class="cell" id="' + i + '/' + j + '"><img src="img/grass.png" id="' + i + '/' + j + '"></div>';		
 			else if ( matrix_step[i][j] == '2' )
-				matrix_doc.innerHTML += '<div class="cell" id="' + i + j + '"><img src="img/tent.png" id="' + i + j + '"></div>';
+				matrix_doc.innerHTML += '<div class="cell" id="' + i + '/' + j + '"><img src="img/tent.png" id="' + i + '/' + j + '"></div>';
             else if ( matrix_step[i][j] == '*' )
-				matrix_doc.innerHTML += '<div class="cell" id="' + i + j + '"><img src="img/tree.png" id="' + i + j + '"></div>';
+				matrix_doc.innerHTML += '<div class="cell" id="' + i + '/' + j + '"><img src="img/tree.png" id="' + i + '/' + j + '"></div>';
 		}
 	}
     top_panel_doc.innerHTML = "";
@@ -90,7 +92,7 @@ function generateTents() {
             matrix_int[a][b] = '2';
             i++;
         }
-    } while (i < (height+width) / 2 + 1)
+    } while (i < tents_sum)
 }
 
 function generateTrees() {
@@ -247,6 +249,13 @@ function displayBaner(str_baner) {
     banerDoc.style.width = cell_size * 2.4 + "px";
 	banerDoc.style.top = ((parseInt(matrix_doc.style.height) / 2) + parseInt(banerDoc.style.height)) * (-1) + "px";
     banerDoc.style.left = (parseInt(matrix_doc.style.width) / 2) + "px";
+    for (var i = 0; i <= height; i++) {
+        for (var j = 0; j <= width; j++) {
+            if (matrix_step[i][j] == '0')
+                matrix_step[i][j] = '1';
+        }
+    }
+    display();
     banerDoc.style.visibility = "visible";
 }
 
@@ -265,6 +274,7 @@ matrix_doc.onclick = function(event) {
     if (game_status == 0){
         var a = event.target.id;
         a.toString();
+        a = a.split('/');
         if (matrix_step[a[0]][a[1]] == "0")
             matrix_step[a[0]][a[1]] = "1";
         else if (matrix_step[a[0]][a[1]] == "1")
@@ -281,5 +291,59 @@ matrix_doc.onclick = function(event) {
 }
 
 matrix_doc.oncontextmenu = function() {
+    return false;
+}
+
+left_panel_doc.onclick = function(event) {
+    if (game_status == 0){
+        var a = event.target.id;
+        a.toString();
+        a = a.split('l');
+        a.shift();
+        a = parseInt(a);
+
+        var flag = 0;
+        for(var i = 0; i <= width; i++) {
+            if (matrix_step[a][i] == "2")
+                flag ++;
+        }
+        if(left_panel[a] == flag) {
+            for(var i = 0; i <= width; i++) {
+                if (matrix_step[a][i] == "0")
+                    matrix_step[a][i] = "1";
+            }
+            display();
+        }
+    }
+}
+
+left_panel_doc.oncontextmenu = function() {
+    return false;
+}
+
+top_panel_doc.onclick = function(event) {
+    if (game_status == 0){
+        var a = event.target.id;
+        a.toString();
+        a = a.split('t');
+        a.shift();
+        a = parseInt(a);
+
+        var flag = 0;
+        for(var i = 0; i <= width; i++) {
+            if (matrix_step[i][a] == "2")
+                flag ++;
+        }
+        if(top_panel[a] == flag) {
+            for(var i = 0; i <= width; i++) {
+                if (matrix_step[i][a] == "0")
+                    matrix_step[i][a] = "1";
+            }
+            display();
+        }
+    }
+}
+
+top_panel_doc.oncontextmenu = function() {
     return false;
 }
