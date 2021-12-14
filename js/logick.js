@@ -66,6 +66,12 @@ function initCSS() {
         panel_cageClass[i].style.height = cell_size + 'px';
         panel_cageClass[i].style.fontSize = cell_size * 0.6 + 'pt';
     }
+    var cbutton_gameClass = document.getElementsByClassName('button_game');
+    for (let i = 0; i < cbutton_gameClass.length; i++) {
+        cbutton_gameClass[i].style.width = cell_size + 'px';
+        cbutton_gameClass[i].style.height = cell_size + 'px';
+		cbutton_gameClass[i].style.fontSize = cell_size * 0.6 + 'pt';
+    }
 }
 
 function matrixInit() {
@@ -346,4 +352,8 @@ top_panel_doc.onclick = function(event) {
 
 top_panel_doc.oncontextmenu = function() {
     return false;
+}
+
+reload.onclick = function() {
+	location.reload();
 }

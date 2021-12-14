@@ -48,3 +48,12 @@
 	background-color: rgb(146, 145, 141);
 	z-index: 50;
 }
+
+.button_game {
+	float: left;
+	margin: 5px 5px 0px 5px;
+	padding: 0px;
+	border: 2px solid #000;
+	text-align: center;
+	background-color: rgb(146, 145, 141);	
+}
