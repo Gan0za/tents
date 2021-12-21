@@ -57,3 +57,6 @@
 	text-align: center;
 	background-color: rgb(146, 145, 141);	
 }
+
+a { text-decoration: none; color: #1B262C;}
+a:visited { text-decoration: none; color: #1B262C;}

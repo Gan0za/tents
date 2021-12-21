@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sapper menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.6">
+    <meta name="author" content="Gan0za">
+    <title>Tents</title>
     <link rel="shortcut icon" href="img/icon.png">
 
     <meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/436590348/ffca2cd9-222e-4e5c-8d3c-3edd6b6ec9e9" />
@@ -19,18 +20,29 @@
     <meta property="og:title" content="Gan0za/tents: Логическая игра &quot;Палатки и деревья&quot; с настройкой генерации поля." />
     <meta property="og:url" content="https://github.com/Gan0za/tents" />
     <meta property="og:description" content="Логическая игра &quot;Палатки и деревья&quot; с настройкой генерации поля." />
-    <link rel="stylesheet" type="text/css" href="css/menu.css" >
+    <link rel="stylesheet" type="text/css" href="css/game.css" >
 </head>
 <body>
-    <h1>Меню:</h1>
-    <p id="heightDoc">Размер поля: 7</p>
-    <input type="range" min="4" max="30" id="height" value="7">
-    <p id="tentsDoc">Колличество палаток: 7</p>
-    <input type="range" min="1" max="14" id="tents" value="7">
-    <p id="sizeDoc">Размер ячейки в px: 60</p>
-    <input type="range" min="20" max="150" step="10" id="sizeCell" value="60">
-    <a id="gameButton" href="./game.html?height=7&tents=7&size=60"><div>Играть</div></a>
-
-    <script src="js/menu.js"></script>
+    <table>
+        <tbody>
+        <tr>
+            <td colspan="2">
+                <div class="button_game"><a href="./index.html">&#60;</a></div>
+                <div class="button_game" id="reload">🗘</div>
+                <div class="button_game" id="help" title="Пока в разработке">?</div>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><div id="top_panel"></div></td>
+        </tr>
+        <tr>
+            <td><div id="left_panel"></div></td>
+            <td><div id="matrix"></div></td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="baner">Вы выграли!</div>
+    <script src="js/game.js"></script>
 </body>
 </html>

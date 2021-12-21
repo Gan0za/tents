@@ -1,0 +1,29 @@
+h1 {
+    font-size: 25pt;
+    margin: 5px;
+    padding: 0px;
+}
+p {
+    font-size: 20pt;
+    margin: 5px;
+    padding: 0px;
+}
+input {
+    width: 100%;
+}
+input:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+div {
+    margin: 10px 5px 5px 5px;
+    padding: 0px;
+    border: 2px solid #1B262C;
+    font-size: 20pt;
+    text-align: center;
+    background-color: rgb(146, 145, 141);	
+}
+div:hover {
+    background-color: rgb(110, 110, 106);	
+}
+a { text-decoration: none; color: #1B262C;}
+a:visited { text-decoration: none; color: #1B262C;}

@@ -1,7 +1,17 @@
 var height = 7; //Высота поля начиная от 0 включительно
 var width = 7;
-
+var cell_size = 60; // размер клоток в px
 var tents_sum = 7; //Колличество палаток 
+
+var url = new URL(window.location.href);
+if (url.searchParams.get("height") != null)
+	height = parseInt(url.searchParams.get("height"));
+	width = parseInt(url.searchParams.get("height"));
+if (url.searchParams.get("size") != null)
+	cell_size = parseInt(url.searchParams.get("size"));
+if (url.searchParams.get("tents") != null)
+    tents_sum = parseInt(url.searchParams.get("tents"));
+
 var game_status = 0; //Статус игры, 0 - ходить можно, 1 нельзя
 let matrix_int = new Array(); //исходногенерируемый массив с палатками
 let matrix_step = new Array(); // Запись шагов игрока
@@ -10,7 +20,6 @@ let left_panel = new Array();// подсчёт палаток по горизо�
 var matrix_doc = document.getElementById('matrix');
 var top_panel_doc = document.getElementById('top_panel');
 var left_panel_doc = document.getElementById('left_panel');
-var cell_size = 60; // размер клоток в px
 
 start();
 
@@ -263,6 +272,22 @@ function displayBaner(str_baner) {
     }
     display();
     banerDoc.style.visibility = "visible";
+}
+
+function check(x, y) {
+    var flag = 0;
+    for(var i = 0; i <= width; i++) {
+        if (matrix_step[i][a] == "2")
+            flag ++;
+    }
+    if(top_panel[a] == flag) {
+        for(var i = 0; i <= width; i++) {
+            if (matrix_step[i][a] == "0")
+                matrix_step[i][a] = "1";
+        }
+        display();
+    }
+
 }
 
 function start() {
