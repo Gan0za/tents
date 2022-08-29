@@ -3,7 +3,7 @@
 Логическая игра **"Палатки и деревья"** с настройкой генерации поля.
 
 ![Screenshot](https://raw.githubusercontent.com/Gan0za/tents/main/res/screenshot.png)<br>
-*Демонстрация пользовательского интерфейса Tents.*
+*Демонстрация пользовательского интерфейса [Tents](https://gan0za.github.io/tents/index.html).*
 
 ### История
 
